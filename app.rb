@@ -1,9 +1,15 @@
-require 'rubygems'
-require 'bundler/setup'
-require 'sinatra'
-require 'json'
+require "rubygems"
+require "bundler/setup"
+require "sinatra"
+require "json"
 
-get '/' do
-  # content_type("application/json")
-  return {name: "I AM GROOT"}.to_json
+get "/" do
+  "I am Groot"
+end
+
+post "/employees" do
+  payload = JSON.parse(request.body.read)
+
+  # [418, payload.to_json]
+  payload.to_json
 end

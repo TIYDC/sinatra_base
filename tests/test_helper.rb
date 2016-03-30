@@ -1,7 +1,9 @@
-ENV['RACK_ENV'] = 'test'
+ENV["RACK_ENV"] = "test"
 
-require 'minitest'
-require 'minitest/autorun'
-require 'rack/test'
+require "rubygems"
+require "bundler/setup"
+require "minitest/autorun"
+require "rack/test"
+require "pry"
 
 require "./app"

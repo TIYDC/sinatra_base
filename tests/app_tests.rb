@@ -1,21 +1,24 @@
 require "./tests/test_helper"
 
-class AppTest < Minitest::Unit::TestCase
+class AppTest < Minitest::Test
   include Rack::Test::Methods
 
   def app
     Sinatra::Application
   end
 
-  def test_it_says_hello_world
-    get '/'
-    assert last_response.ok?
-    assert_equal 'I am Groot', last_response.body
+  def test_declares_its_name
+    response = get "/"
+    assert response.ok?
+    assert_equal "I am Groot", response.body
   end
 
-  def test_it_says_hello_to_a_person
-    get '/', :name => 'Simon'
-    assert last_response.body.include?('Groot')
-    assert_equal 'I am Groot', last_response.body
+  def test_it_handles_and_returns_json
+    hash = { name: "bob" }
+    response = post("/employees", hash.to_json, { "CONTENT_TYPE" => "application/json" })
+
+    assert response.ok?
+    payload = JSON.parse(response.body)
+    assert_equal({ "name" => "bob" }, payload)
   end
 end
