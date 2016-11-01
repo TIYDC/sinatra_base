@@ -1,10 +1,10 @@
-require "./tests/test_helper"
+require "./test/test_helper"
 
 class AppTest < Minitest::Test
   include Rack::Test::Methods
 
   def app
-    Apps
+    App
   end
 
   def test_declares_its_name
