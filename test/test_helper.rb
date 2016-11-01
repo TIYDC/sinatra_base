@@ -5,9 +5,9 @@ begin
 rescue LoadError
 end
 
-require "rubygems"
 require "bundler/setup"
 require "minitest/autorun"
 require "rack/test"
 
 require "./app"
+

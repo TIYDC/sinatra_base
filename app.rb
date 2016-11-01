@@ -1,15 +1,15 @@
-require "rubygems"
-require "bundler/setup"
-require "sinatra"
-require "json"
+require_relative "dependencies"
 
-get "/" do
-  "I am Groot"
-end
+class App < Sinatra::Base
+  get "/" do
+    "I am Groot"
+  end
 
-post "/employees" do
-  payload = JSON.parse(request.body.read)
+  post "/api/echo" do
+    payload = JSON.parse(request.body.read)
 
-  # [418, payload.to_json]
-  payload.to_json
+    # [418, payload.to_json]
+    payload.to_json
+  end
+  run! if app_file == $PROGRAM_NAME
 end
