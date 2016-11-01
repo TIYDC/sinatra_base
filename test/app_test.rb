@@ -4,7 +4,7 @@ class AppTest < Minitest::Test
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application
+    Apps
   end
 
   def test_declares_its_name
@@ -15,7 +15,7 @@ class AppTest < Minitest::Test
 
   def test_it_handles_and_returns_json
     hash = { name: "bob" }
-    response = post("/employees", hash.to_json, { "CONTENT_TYPE" => "application/json" })
+    response = post("/api/echo", hash.to_json, { "CONTENT_TYPE" => "application/json" })
 
     assert response.ok?
     payload = JSON.parse(response.body)
