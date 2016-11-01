@@ -11,5 +11,6 @@ class App < Sinatra::Base
     # [418, payload.to_json]
     payload.to_json
   end
+
   run! if app_file == $PROGRAM_NAME
 end
